@@ -1,0 +1,142 @@
+
+<mat-card class="emp-card">
+    <mat-card-header>
+       <mat-card-title>Register Employee</mat-card-title>
+     </mat-card-header> 
+    <mat-card-content>
+      
+      <form [formGroup]="createForm" fxLayout fxLayout.xs="column" fxLayoutGap="10px" fxLayoutAlign="space-evenly start" >
+        
+        <div fxLayout="column" fxFlex="100%" fxLayoutGap="0px" fxLayoutAlign="start">
+          <mat-form-field appearance="outline">
+            <mat-label>First Name</mat-label>
+            <input type="text" matInput  formControlName="employeeFname" >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Last Name</mat-label>
+           <input type="text" matInput  formControlName="employeeLname">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Employee ID</mat-label>
+            <input type="text" matInput formControlName="employeeId" >
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Gender</mat-label>
+            <mat-select formControlName="employeeGender" disableOptionCentering  [(ngModel)]="employeeGender" > 
+              <mat-option [value]="null"></mat-option> 
+               <mat-option *ngFor="let type of employeeGenderList" [value]="type"  >{{type}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Department</mat-label>
+            <mat-select formControlName="departmentCategory" disableOptionCentering  [(ngModel)]="departmentCategory" > 
+              <mat-option [value]="null"></mat-option> 
+               <mat-option *ngFor="let type of departmentCategoryList" [value]="type"  >{{type}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+         
+          <mat-form-field appearance="outline">
+            <mat-label>Employee Type </mat-label>
+            <mat-select formControlName="employeeType" disableOptionCentering  [(ngModel)]="employeeType"  > 
+              <mat-option [value]="null"></mat-option> 
+              <mat-option *ngFor="let type2 of employeeTypeList" [value]="type2"   >{{type2}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div  *ngIf="employeeType=='Permanent'" >
+            <mat-form-field appearance="outline" fxFlex="49%">
+              <mat-label>Hire Date</mat-label>
+              <input type="text" matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate" style="display: none">
+              <angular2-date-picker [clearOnToggle]="toggleClear"  [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate" [settings]="dtPickerSettings"></angular2-date-picker>
+            </mat-form-field>
+          </div>
+
+           <div fxLayout="row wrap" fxLayoutGap="2%" *ngIf="employeeType=='Temperary'" >
+            <mat-form-field appearance="outline" fxFlex="49%">
+              <mat-label>Created Date From</mat-label>
+              <input type="text" matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate" style="display: none">
+              <angular2-date-picker [clearOnToggle]="toggleClear"  [ngModelOptions]="{standalone: true}" [(ngModel)]="fromDate" [settings]="dtPickerSettings"></angular2-date-picker>
+            </mat-form-field>
+  
+            <mat-form-field appearance="outline" fxFlex="49%">
+              <mat-label>Created Date To</mat-label>
+              <input type="text" matInput [ngModelOptions]="{standalone: true}" [(ngModel)]="toDate" style="display: none">
+              <angular2-date-picker [clearOnToggle]="toggleClear" [ngModelOptions]="{standalone: true}" [(ngModel)]="toDate" [settings]="dtPickerSettings"></angular2-date-picker>
+            </mat-form-field>
+          </div>
+          <mat-form-field appearance="outline">
+            <mat-label>Employee Title </mat-label>
+            <mat-select formControlName="employeeTitle" disableOptionCentering  [(ngModel)]="employeeTitle "  > 
+              <mat-option [value]="null"></mat-option> 
+            <mat-option *ngFor="let type of employeeTitleList" [value]="type"    >{{type}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div fxLayout="row wrap"   fxLayoutGap="2%">
+            <mat-form-field appearance="outline" fxFlex="93%">
+              <mat-label>Employee Mobiles</mat-label>
+              <input type="text" matInput formControlName="employeeMobile">
+            </mat-form-field>
+            <button mat-mini-fab color="primary"  fxFlex="5%" (click)="addMobile()" >
+              <mat-icon>playlist_add</mat-icon>
+            </button>
+            </div>
+            <div>
+              <table class="mat-table mat-elevation-z8" style="width: 100%;" >
+                <tr class="mat-header-row">
+                  <th class="mat-header-cell w1" >#</th>
+                  <th  class="mat-header-cell">Employee Mobile</th>
+                  <th  class="mat-header-cell w2"  >Action</th>
+                </tr>
+                <tbody cdkDrag *ngFor="let item of employeeMobiles;let i = index;">
+                  <tr class="mat-row">
+                    <td class="mat-cell w1 " >
+                        {{i+1}}
+                    </td>
+                    <td  class="mat-cell">{{item}}</td>
+                    <td  class="mat-cell w2"  >
+                      <mat-icon class="mat-cell-action-icon" matTooltip="Remove" matTooltipPosition="above" (click)="deleteMobile(i)" >delete_outline</mat-icon>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          <div fxLayout="row wrap"   fxLayoutGap="2%">
+          <mat-form-field appearance="outline" fxFlex="93%">
+            <mat-label>Employee Emails</mat-label>
+            <input type="text" matInput formControlName="employeeEmail" >
+          </mat-form-field>
+          <button mat-mini-fab color="primary"  fxFlex="5%" (click)="add()" >
+            <mat-icon>playlist_add</mat-icon>
+          </button>
+          </div>
+          <div>
+            <table class="mat-table mat-elevation-z8" style="width: 100%;" >
+              <tr class="mat-header-row">
+                <th class="mat-header-cell w1" >#</th>
+                <th  class="mat-header-cell">Customer Email</th>
+                <th  class="mat-header-cell w2"  >Action</th>
+              </tr>
+              <tbody cdkDrag *ngFor="let item of employeeEmails;let i = index;">
+                <tr class="mat-row">
+                  <td class="mat-cell w1 " >
+                      {{i+1}}
+                  </td>
+                  <td  class="mat-cell">{{item}}</td>
+                  <td  class="mat-cell w2"  >
+                    <mat-icon class="mat-cell-action-icon" matTooltip="Remove" matTooltipPosition="above" (click)="deleteEmail(i)" >delete_outline</mat-icon>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+           
+          <mat-form-field appearance="outline">
+            <mat-label>Salary</mat-label>
+            <input type="text" matInput formControlName="employeeSalary" >
+          </mat-form-field>
+         
+         
+        </div>
+      </form>
+     
+    </mat-card-content>
+  </mat-card>

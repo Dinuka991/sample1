@@ -1,0 +1,12 @@
+.login{
+   
+    margin: 15% auto 15% auto; 
+    border-radius: 15px solid;
+    width: 60%;
+    border-color: #e9ebeed7;
+   
+}
+span.psw {
+    float: right;
+    padding-top: 16px;
+  }

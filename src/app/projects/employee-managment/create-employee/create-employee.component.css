@@ -1,0 +1,74 @@
+.example-header-image {
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+  }
+
+  .example-radio-group {
+    display: flex;
+    flex-direction: column;
+    margin: 15px 0;
+  }
+  
+  .example-radio-button {
+    margin: 5px;
+  }
+  cellIcon {
+    font-size: 20px;
+    cursor: pointer;
+  }
+  table {
+    text-align: center !important;
+    width: 100%;
+  }
+  
+  .mat-header-cell {
+    text-align: center;
+  }
+  .mat-cell {
+    padding: 0px !important;
+  }
+  .data-card {
+    border: 1px solid;
+    border-color: #c1c5cc;
+  }
+  .mat-header-cell.w1{
+   
+    padding-left: 5px;
+  }
+  .mat-header-cell.w2{
+  
+    padding-right: 5px;; 
+  }
+ 
+  .mat-cell.w1{
+   
+    padding-left: 5px;
+  }
+  .mat-cell.w2{
+   
+    padding-right: 5px; 
+    }
+
+  .mat-button-green {
+    color: white;
+    ;
+    background-color: #7ec848;  
+  }
+  .table {
+    table-layout: fixed;
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+  .strangeNumbers {
+    word-spacing: 0.8em;
+  }
+  .mat-card {
+    font-family: "LatoWebRegular", Tahoma, Geneva, sans-serif;
+    margin: 10px;
+    padding: 10px !important;
+    box-shadow: none !important;
+    text-align: left !important;
+  }
+  .mat-card-header{
+    padding-bottom: 5px;
+  }

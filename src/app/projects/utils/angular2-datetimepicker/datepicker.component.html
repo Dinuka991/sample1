@@ -1,0 +1,102 @@
+<div class="winkel-calendar" (clickOutside)="closepopover()">
+    <span>
+        <input type="hidden" class="wc-input" value="{{date}}">
+        <div class="wc-date-container" style="height: 15px;" (click)="popover = !popover">
+            <span>{{modelDate ? (date | date: settings.format) : ''}}</span>
+            <mat-icon style="float: right;margin-top: -8px">calendar_today</mat-icon>
+        </div>
+    </span>
+    <div class="wc-date-popover"
+        [hidden]="!popover">
+        <div class="wc-details" [hidden]="timeView">
+            <mat-icon class="wc-prev" style="height: auto" (click)="prevMonth($event)">chevron_left</mat-icon>
+            <div class="month-year" (click)="toggleMonthView()">{{date | date: 'MMMM'}}</div>
+            <mat-icon class="wc-next" style="height: auto" (click)="nextMonth($event)">chevron_right</mat-icon>
+        </div>
+        <div class="year-title" [hidden]="timeView">
+            <div class="year-dropdown" (click)="generateYearList('current')">
+                {{date | date: 'yyyy'}}
+                <mat-icon style="float: right;margin-top: 8px;margin-right: 8px;">{{yearView ? "expand_less" : "expand_more"}}</mat-icon>
+            </div>
+        </div>
+        <table class="calendar-header" [hidden]="yearView == true || monthsView == true || timeView">
+            <tr>
+                <td class="calendar-header-day">Su</td>
+                <td class="calendar-header-day">Mo</td>
+                <td class="calendar-header-day">Tu</td>
+                <td class="calendar-header-day">We</td>
+                <td class="calendar-header-day">Th</td>
+                <td class="calendar-header-day">Fr</td>
+                <td class="calendar-header-day">Sa</td>
+            </tr>
+        </table>
+        <div class="months-view" [hidden]="!monthsView || timeView" (click)="setMonth($event)">
+            <span *ngFor="let month of settings.cal_months_labels_short"
+                [ngClass]="{'current-month': month == settings.cal_months_labels_short[date?.getMonth()]}"
+                id="{{month}}">{{month}}</span>
+        </div>
+        <div class="years-view" [hidden]="!yearView || timeView">
+            <div class="prev" (click)="generateYearList('prev')">
+                <mat-icon>chevron_left</mat-icon>
+            </div>
+            <div class="next" (click)="generateYearList('next')">
+                <mat-icon>chevron_right</mat-icon>
+            </div>
+            <div class="years-list-view" (click)="setYear($event)">
+                <span *ngFor="let year of yearsList" [ngClass]="{'current-year': year == date?.getFullYear()}"
+                    id="{{year}}">{{year}}</span>
+            </div>
+        </div>
+        <div class="time-view" [hidden]="!timeView">
+            <div class="time">
+                <div class="hour">
+                    <mat-icon class="inc-btn" (click)="incHour()" style="width: auto">expand_less</mat-icon>
+                    <input type="number" value="{{hourValue}}" [(ngModel)]="hourValue" autofocus />
+                    <mat-icon class="dec-btn" (click)="decHour()" style="width: auto">expand_more</mat-icon>
+                    <span class="fa fa-minus dec-btn" (click)="decHour()"></span>
+                </div>
+                <div class="time-divider">:</div>
+                <div class="minutes">
+                    <mat-icon class="inc-btn" (click)="incMinutes()" style="width: auto">expand_less</mat-icon>
+                    <input type="number" value="{{minValue}}" [(ngModel)]="minValue" />
+                    <mat-icon class="dec-btn" (click)="decMinutes()" style="width: auto">expand_more</mat-icon>
+                </div>
+                <div class="time-divider">:</div>
+                <div class="seconds">
+                    <mat-icon class="inc-btn" (click)="incSeconds()" style="width: auto">expand_less</mat-icon>
+                    <input type="number" value="{{secValue}}" [(ngModel)]="secValue" />
+                    <mat-icon class="dec-btn" (click)="decSeconds()" style="width: auto">expand_more</mat-icon>
+                </div>
+            </div>
+            <div class="meridian">
+                <div class="cuppa-btn-group">
+                    <button [ngClass]="{'active': timeViewMeridian == 'AM'}" class="button" ng-model="timeViewMeridian"
+                        (click)="toggleMeridian('AM')">AM</button>
+                    <button [ngClass]="{'active': timeViewMeridian == 'PM'}" class="button" ng-model="timeViewMeridian"
+                        (click)="toggleMeridian('PM')">PM</button>
+                </div>
+            </div>
+            <!-- <div class="time-view-btn">
+                <button class="button" (click)="setTimeView()">Set Time</button>
+            </div> -->
+        </div>
+        <table class="calendar-days" (click)="setDay($event);" [hidden]="monthsView || yearView || timeView">
+            <tr *ngFor="let week of monthDays">
+                <td [ngClass]="{'calendar-day': day.day != null,'today': day.day == today.getDate() && date?.getMonth() == today.getMonth() && date?.getFullYear() == today.getFullYear(),'selected-day': modelDate && date && day.day == date?.getDate()}"
+                    *ngFor="let day of week">
+                    <span [attr.data-label]="composeDate(day.date)">{{day.day}}</span>
+                </td>
+
+            </tr>
+        </table>
+        <div class="cal-util">
+            <div style="text-align: right;padding: 10px">
+                <button *ngIf="!settings.timePicker" mat-raised-button color="primary" class="action-button" (click)="close()">Close</button>
+                <button mat-raised-button color="primary" class="action-button" style="margin-left: 5px;" (click)="setNow()">{{timeView ? "Now" : "Today"}}</button>
+                <button *ngIf="settings.timePicker" mat-raised-button color="primary" class="action-button" style="margin-left: 5px;" (click)="timeView = !timeView" >{{timeView ? "Date" : "Time"}}</button>
+                <button *ngIf="settings.timePicker" mat-raised-button color="primary" class="action-button" style="margin-left: 5px;" (click)="done()">Done</button>
+                <button *ngIf="!settings.timePicker" mat-raised-button color="primary" class="action-button" style="margin-left: 5px;" (click)="clear()">Clear</button>
+            </div>
+        </div>
+    </div>
+</div>

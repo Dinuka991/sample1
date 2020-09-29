@@ -1,0 +1,228 @@
+
+.mat-card {
+  font-family: "LatoWebRegular", Tahoma, Geneva, sans-serif;
+  margin: 10px;
+  padding: 10px !important;
+  box-shadow: none !important;
+  text-align: left !important;
+}
+.table {
+  box-shadow: none;
+  width: 100%;
+  table-layout: fixed;
+  word-break: break-word;
+}
+.mat-table {
+  box-shadow: none;
+  width: 100%;
+  table-layout: fixed;
+  word-break: break-word;
+}
+
+.mat-card-actions .mat-flat-button {
+  margin: 0 4px;
+  border-radius: 5px !important;
+}
+
+.mat-list-text {
+  padding-left: 0px;
+}
+
+.mat-list {
+  margin-bottom: 10px;
+}
+
+.mat-step-header {
+  font-size: 15px !important;
+}
+
+.error-message {
+  color: red;
+}
+
+.actions {
+  padding: 7px 7px 0 7px;
+  margin-bottom: 20px;
+}
+
+.data-card {
+  border: 1px solid;
+  border-color: #e9ebeed7;
+}
+
+.mat-error {
+  padding: 20px;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.result-progress-bar {
+  padding: 20px;
+  font-size: 14px;
+}
+
+.mat-list-item-content {
+  margin: 0px !important;
+  padding: 0px !important;
+  font-weight: bold;
+  font-size: 11px;
+}
+
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0 30px white inset;
+  box-shadow: 0 0 0 30px white inset;
+}
+
+h2 {
+  font-size: 16px;
+}
+
+h3 {
+  font-size: 14px;
+}
+
+p span {
+  display: block;
+}
+
+.mobile-label {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .mobile-label {
+    width: 100px;
+    padding-right: 10px;
+    display: inline-block;
+    font-weight: bold;
+  }
+  .mat-header-row {
+    display: none;
+  }
+  .mat-row {
+    flex-direction: column;
+    align-items: start;
+  }
+  .mat-cell {
+    padding: 10px !important;
+  }
+  .file-name {
+    width: 40% !important;
+  }
+}
+
+.mat-dialog-container {
+  padding: 0px !important;
+}
+
+.cdk-overlay-pane {
+  padding-top: 15px !important;
+}
+
+.mat-header-cell {
+  font-size: 14px !important;
+  background-color: lightgray;
+  padding-right: 10px;
+}
+
+.cdk-overlay-pane {
+  padding-top: 15px !important;
+}
+
+.mat-divider-horizontal {
+  left: auto !important;
+  position: initial !important;
+}
+
+.mat-step-label {
+  white-space: inherit !important;
+}
+
+.file-name {
+  width: 100%;
+}
+
+.mat-stroked-button {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.button-card {
+  margin-top: 0px !important;
+}
+
+.filter-card {
+  padding-bottom: 0px !important;
+  margin-bottom: 0px !important;
+}
+
+.mat-column-warning {
+  flex: 0 0 2%;
+  padding-left: 10px;
+  padding-right: 0px !important;
+}
+
+.mat-column-number {
+  flex: 0 0 2%;
+  padding-right: 0px !important;
+}
+
+.mat-cell {
+  font-size: 14px;
+}
+
+.cellIcon {
+  font-size: 20px;
+  cursor: pointer;
+}
+.warningIcon {
+  color: red;
+  font-size: 18px !important;
+}
+
+.mat-column-action {
+  flex: 0 0 4%;
+  padding-right: 0px;
+}
+
+.action-icon-cell {
+  justify-content: flex-end;
+}
+.noDataMsg {
+  text-align: center;
+  padding: 10px;
+  color: #777;
+}
+
+.delete-all-button {
+  margin-right: 0px !important;
+}
+
+.mat-cell {
+  padding-right: 10px;
+}
+
+.mat-column-accessMethod {
+  flex: 0 0 8%;
+}
+
+.mat-column-lookupType {
+  flex: 0 0 8%;
+}
+
+.mat-column-productType {
+  flex: 0 0 8%;
+}
+
+.disable {
+  color: silver;
+}
+.disable:hover{
+  cursor: not-allowed;  
+}
+.mat-button-green {
+  color: white;
+  ;
+  background-color: #7ec848;  
+}
